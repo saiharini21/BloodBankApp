@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplifyc212724ce0bf4-staging-90635-authRole",
+      "UnauthRoleArn": "arn:aws:iam::264030514595:role/amplify-amplifyc212724ce0bf4-staging-90635-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::264030514595:role/amplify-amplifyc212724ce0bf4-staging-90635-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-amplifyc212724ce0bf4-staging-90635-deployment",
+      "UnauthRoleName": "amplify-amplifyc212724ce0bf4-staging-90635-unauthRole",
+      "StackName": "amplify-amplifyc212724ce0bf4-staging-90635",
+      "StackId": "arn:aws:cloudformation:us-east-1:264030514595:stack/amplify-amplifyc212724ce0bf4-staging-90635/cd1153b0-e4ae-11ec-a0af-12d301c02d71",
+      "AmplifyAppId": "d3nhfhyz3oyigw"
+    },
+    "categories": {
+      "auth": {
+        "bloodbankapp9461ab6b": {}
+      }
+    }
+  }
+}
