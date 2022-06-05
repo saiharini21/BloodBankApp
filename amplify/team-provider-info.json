@@ -14,6 +14,12 @@
     "categories": {
       "auth": {
         "bloodbankapp9461ab6b": {}
+      },
+      "function": {
+        "AdminQueriesc9f06526": {
+          "deploymentBucketName": "amplify-amplifyc212724ce0bf4-staging-90635-deployment",
+          "s3Key": "amplify-builds/AdminQueriesc9f06526-45583031377248556a54-build.zip"
+        }
       }
     }
   }

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "bloodbankapp",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/home/sreeharini/bloodbank/bloodbankapp/amplify/backend/api/bloodbankapp/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 7
+    }
+  }
+}

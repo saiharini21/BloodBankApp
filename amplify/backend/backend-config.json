@@ -23,6 +23,85 @@
           "EMAIL"
         ]
       }
+    },
+    "userPoolGroups": {
+      "service": "Cognito-UserPool-Groups",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "bloodbankapp9461ab6b",
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb",
+            "AppClientID",
+            "IdentityPoolId"
+          ]
+        }
+      ]
+    }
+  },
+  "api": {
+    "bloodbankapp": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 7
+            }
+          },
+          "additionalAuthenticationProviders": []
+        }
+      }
+    },
+    "AdminQueries": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "authorizationType": "AMAZON_COGNITO_USER_POOLS",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "bloodbankapp9461ab6b",
+          "attributes": [
+            "UserPoolId"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "AdminQueriesc9f06526",
+          "attributes": [
+            "Arn",
+            "Name"
+          ]
+        }
+      ]
+    }
+  },
+  "storage": {
+    "s338aa8001": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
+    }
+  },
+  "function": {
+    "AdminQueriesc9f06526": {
+      "service": "Lambda",
+      "providerPlugin": "awscloudformation",
+      "build": true,
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "bloodbankapp9461ab6b",
+          "attributes": [
+            "UserPoolId"
+          ]
+        }
+      ]
     }
   }
 }

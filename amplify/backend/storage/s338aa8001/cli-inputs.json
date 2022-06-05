@@ -1,0 +1,14 @@
+{
+  "resourceName": "s338aa8001",
+  "policyUUID": "38aa8001",
+  "bucketName": "bloodbankapp17cb8462f6f04e68921dc774adaa00b4",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
