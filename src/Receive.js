@@ -3,6 +3,8 @@ import './App.css';
 import  { API, graphqlOperation } from 'aws-amplify';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import {listDonors } from './graphql/queries';
+import { updateDonor as updateDonarMutation, deleteDonor as deleteDonarMutation } from './graphql/mutations';
+
 import {
   Link
 } from "react-router-dom";
@@ -10,8 +12,8 @@ const initialFormState = { units:0,bgrp:"" }
 
 function Receive({signOut}) {
   const [Donars, setDonar] = useState([]);
-  const [avail, setAvail] = useState(0);
-
+  const [avail, setAvail] = useState(-1);
+  const [ifno, setIfno] = useState(0);
 
 
   const [formData, setFormData] = useState(initialFormState);
@@ -24,19 +26,30 @@ function Receive({signOut}) {
     const DonarList=(apiData.data.listDonors.items);
     setDonar(DonarList);
   }
+  async function deleteDonar({ id }) {
+    const newDonarArray = Donars.filter(Donar => Donar.id !== id);
+    setDonar(newDonarArray);
+    await API.graphql({ query: deleteDonarMutation, variables: { input: { id } }});
+  }
   async function getData(){
      console.log(Donars);
       const filDona=Donars.filter((donar)=>(donar.bgrp.includes(formData.bgrp) ));
       console.log(filDona);
       if((filDona.length)>=formData.units)
       {
-        
+        for(let i=1;i<=formData.units;i++)
+        {
+           deleteDonar(filDona[i]);
+        }
         setAvail(1);
+        setIfno(filDona.length-formData.units)
 
       }
       else
       {
+
         setAvail(0);
+        setIfno(filDona.length);
       }
       setFormData(initialFormState);
   }
@@ -85,7 +98,8 @@ function Receive({signOut}) {
                     name="units"
                   />
                     <button onClick={getData} className="btn btn-primary" style={{width: "500px"}}>Check for availability</button>
-                    {(avail===1 )?<h1>Your Booking is successfull</h1> :<h1>Sorry, Try Again Later</h1>}
+                    {(avail===-1)?<h1></h1>:((avail===1)?<h1>Your Booking is successfull</h1> :<h1>Sorry, Try Again Later</h1>)}
+                   {(avail===-1)?<h2></h2>: <h2> Remaining: {ifno}</h2>}
             </div>
         </div>
   )
