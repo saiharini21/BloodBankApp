@@ -15,6 +15,7 @@ import Dashboard from "./Dashboard";
 import Donardet from "./Donardet";
 import {React,useState,useEffect} from 'react';
 import Receive from "./Receive";
+import Analyse from "./Analyse"
 
 
 
@@ -37,7 +38,7 @@ function  App({signOut}) {
         <Routes>
           <Route path="/" element={ userinfo ?  <Donate signOut={signOut}/> :  <Dashboard signOut={signOut}/>  } />
           <Route path="/donardet" element={ userinfo ?  <Donardet /> :  <Receive signOut={signOut}/>  } />
-          
+          <Route path="/analysis" element={<Analyse/>} />
           <Route
             path="*"
             element={<Navigate to="/" replace />}

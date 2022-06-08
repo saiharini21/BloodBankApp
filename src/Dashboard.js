@@ -22,6 +22,9 @@ function Dashboard({signOut}) {
                     <li className="nav-item">
                     <Link to="/donardet">Recieve</Link>                    
                   </li>
+                  <li className="nav-item">
+                    <Link to="/analysis">Analysis</Link>                    
+                  </li>
                     <li className="nav-item">
                     <Link to='/'><a onClick={signOut}>Logout</a></Link>                    
                     </li>
