@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import './recieve.css'
 import  { API, graphqlOperation } from 'aws-amplify';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import {listDonors } from './graphql/queries';
@@ -72,34 +73,38 @@ function Receive({signOut}) {
                     <Link to="/donardet">Recieve</Link>                    
                   </li>
                     <li className="nav-item">
-                    <a onClick={signOut}>Logout</a>                    
+                    <Link to='/'><a onClick={signOut}>Logout</a></Link>                    
                     </li>
                   </ul>
                 </div>
             </nav>
-            <div className="form-div">
+            <div className="form-div2">
                 <h2>Reciver Form</h2>
                 <small>Check for Availabiltiy!</small>
                 <br/><br/>
   
                 
-                    <label htmlFor="bgrp" className='label mt-3'>Blood Grp :</label>
+                    <label htmlFor="bgrp" className='label mt-3'>Blood Group :</label>
+                    <br></br>
                     <input
                     onChange={e => setFormData({ ...formData,'bgrp':e.target.value})}
                     placeholder="Blood Group"
                     value={formData.bgrp}
                     name="bgrp"
-                  />
+                  /><br></br>
                     <label htmlFor="units" className='label mt-3'>No of units :</label>
+                    <br></br>
                     <input
                     onChange={e => setFormData({ ...formData,'units':e.target.value})}
                     placeholder="Units"
                     value={formData.units}
                     name="units"
                   />
+                  <br/><br/>
                     <button onClick={getData} className="btn btn-primary" style={{width: "500px"}}>Check for availability</button>
-                    {(avail===-1)?<h1></h1>:((avail===1)?<h1>Your Booking is successfull</h1> :<h1>Sorry, Try Again Later</h1>)}
-                   {(avail===-1)?<h2></h2>: <h2> Remaining: {ifno}</h2>}
+                    <br/><br/>
+                    {(avail===-1)?<h1></h1>:((avail===1)?<h4>Your Booking is successfull</h4> :<h4>Sorry, Try Again Later</h4>)}
+                   {(avail===-1)?<h2></h2>: <h4> Remaining: {ifno}</h4>}
             </div>
         </div>
   )

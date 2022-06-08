@@ -1,0 +1,28 @@
+body{
+    overflow-x: hidden;
+}
+.wrapper3{
+    background: linear-gradient(0deg, rgba(0, 0, 12, 0.863), rgba(0, 0,12, 0.3)),url('donate.jpg'); 
+    background-size: cover;
+}
+label{
+    color: aliceblue;
+}
+
+.container{
+    background: linear-gradient(0deg, rgba(0, 0, 12, 0.863), rgba(0, 0,12, 0.3));
+    color: azure;
+    padding: 10px;
+}
+
+.card{
+    width: fit-content;
+    background: linear-gradient(0deg, rgba(0, 0, 12, 0.863), rgba(0, 0,12, 0.3));
+    color: azure;
+    font-size: 20px;
+    margin: 15px;
+    padding: 5px;
+}
+.page2{
+    margin: 5px;
+}

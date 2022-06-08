@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import './donardet.css'
 import  { API, graphqlOperation } from 'aws-amplify';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import { listDonors } from './graphql/queries';
@@ -9,7 +10,7 @@ import {
 } from "react-router-dom";
 const initialedit = {id:'', name: '', Phone:0 ,email:'',bgrp:'',hospital:'',date:'' }
 
-function Donardet() {
+function Donardet({signOut}) {
   const [Donars, setDonar] = useState([]);
   const [edit,setEdit]=useState(initialedit);
   const [isedit,setIsedit]=useState(0);
@@ -41,6 +42,27 @@ function Donardet() {
   }
 
   return (
+    <div className="wrapper3">
+            <nav className="navbar navbar-expand-lg navbar-light bg-dark">
+                <a className="navbar-brand" href="/">Blood Bank</a>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span className="navbar-toggler-icon"></span>
+                </button>
+              
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul className="navbar-nav">
+                    <li className="nav-item active">
+                    <Link to="/">Donate</Link>                    
+                    </li>
+                    <li className="nav-item">
+                    <Link to="/donardet">Donate Details</Link>                    
+                  </li>
+                    <li className="nav-item">
+                    <Link to='/'><a onClick={signOut}>Logout</a></Link>                    
+                    </li>
+                  </ul>
+                </div>
+            </nav>
     <div className="container">
       <h1 className='title mt-4 mb-2'>Donar Details</h1>
       <div className='find'>
@@ -63,13 +85,13 @@ function Donardet() {
         name="Phone"
         disabled = {(!isedit)? "disabled" : ""}
 
-      />
-       <label htmlFor="email" className='label me-1'>Email :</label>
+      /><br/>
+       <label htmlFor="email" className='label me-1' style={{marginLeft:"1.5rem",marginRight:"1rem"}}>Email :</label>
          <input
         onChange={e => setEdit({ ...edit, 'email': e.target.value})}
         placeholder="Donar Email"
         value={edit.email}
-        style={{width:'40%',margin:"1rem 0.4rem"}}
+        style={{width:'40%',marginRight:"2rem"}}
         name="email"
         disabled = {(!isedit)? "disabled" : ""}
 
@@ -82,7 +104,7 @@ function Donardet() {
         style={{width:'40%',margin:"1rem 0.4rem"}}
         disabled = {(!isedit)? "disabled" : ""}
 
-      />
+      /><br/>
        <label htmlFor="date" className='ms-4 label me-1 '>Date :</label>
         <input
         onChange={e => setEdit({ ...edit, 'date': e.target.value})}
@@ -92,35 +114,33 @@ function Donardet() {
         disabled = {(!isedit)? "disabled" : ""}
 
       />
-       <label htmlFor="bgrp" className='ms-4 label me-1'>Blood Grp  :</label>
+       <label htmlFor="bgrp" className='ms-4 label me-1'>BloodGroup :</label>
         <input
         onChange={e => setEdit({ ...edit,'bgrp':e.target.value})}
         placeholder="Blood Grp "
         value={edit.bgrp}
-        style={{width:'40%',margin:"1rem 0.4rem"}}
+        style={{width:'38%',margin:"1rem 0.4rem"}}
         disabled = {(!isedit)? "disabled" : ""}
 
       />
+      <br/><br/>
       <div className='button-grp justify-content-center'>
-      <button className='btn btn-primary page2 ' onClick={updateDonar}>Update Donar</button>
+      <button style={{width:'50%',margin:"1rem 13rem"}} className='btn btn-primary page2 ' onClick={updateDonar}>Update Donar</button>
       </div>
-      <div className='button-grp justify-content-center'>
-      <Link to="/" className='btn btn-primary page2 mt-2'> Create Page</Link>
-      </div>
-
-   
  </div>
+ </div>
+ <br/><br/>
         <div className='disp-container'>
             <div className='row'>
              {
           Donars.map(Donar => (
             <div key={Donar.id} className='card col-lg-6 col-12'>
-            <h2 className='disp-data'><span className='disp-label me-5'>Name: </span> {Donar.name}</h2>
-            <h2 className='disp-data'><span className='disp-label me-5'>Mobile: </span> {Donar.Phone}</h2>
-            <h2 className='disp-data'><span className='disp-label me-5'>Email: </span> {Donar.email}</h2>
-            <h2 className='disp-data'><span className='disp-label me-3'>Hospital:</span> {Donar.hospital}</h2>
-            <h2 className='disp-data'><span className='disp-label me-5'>Date: </span> {Donar.date}</h2>
-            <h2 className='disp-data'><span className='disp-label me-5'>Blood Group : </span> {Donar.bgrp}</h2>
+            <p className='disp-data'><span className='disp-label me-5'>Name: </span> {Donar.name}</p>
+            <p className='disp-data'><span className='disp-label me-5'>Mobile: </span> {Donar.Phone}</p>
+            <p className='disp-data'><span className='disp-label me-5'>Email: </span> {Donar.email}</p>
+            <p className='disp-data'><span className='disp-label me-3'>Hospital:</span> {Donar.hospital}</p>
+            <p className='disp-data'><span className='disp-label me-5'>Date: </span> {Donar.date}</p>
+            <p className='disp-data'><span className='disp-label me-5'>Blood Group : </span> {Donar.bgrp}</p>
              <div className='button-grp'>
               <button  className='btn btn-primary page2' onClick={() => displayDonar(Donar)}>Edit Donar</button>
               <button  className='btn btn-primary page2' onClick={() => deleteDonar(Donar)}>Delete Donar</button>
