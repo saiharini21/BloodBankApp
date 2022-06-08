@@ -38,7 +38,7 @@ function Receive({signOut}) {
       console.log(filDona);
       if((filDona.length)>=formData.units)
       {
-        for(let i=1;i<=formData.units;i++)
+        for(let i=0;i<=formData.units;i++)
         {
            deleteDonar(filDona[i]);
         }
